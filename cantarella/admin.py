@@ -2,7 +2,7 @@
 # Don't Remove Credit
 # Telegram Channel @cantarellabots
 
-from pyrogram import Client, filters, enums, StopPropagation
+from pyrogram import Client, filters, enums
 from pyrogram.types import (
     Message,
     CallbackQuery,
@@ -270,16 +270,16 @@ async def admin_callbacks(client: Client, callback_query: CallbackQuery):
 
 
 # ======================================================
-# Text Handler for Admin State Input
+# Admin State Processing (called from start.py save handler)
 # ======================================================
 
-@Client.on_message(filters.text & filters.private & filters.user(ADMINS) & ~filters.regex("^/"), group=-1)
-async def admin_state_handler(client: Client, message: Message):
+async def process_admin_state(client: Client, message: Message):
+    """Process admin state input. Returns True if handled, False otherwise."""
     user_id = message.from_user.id
     state = ADMIN_STATE.get(user_id)
 
     if not state:
-        return  # Not in admin state, let other handlers handle it
+        return False
 
     action = state.get("action")
     step = state.get("step")
@@ -476,9 +476,9 @@ async def admin_state_handler(client: Client, message: Message):
         )
 
     else:
-        return  # Unknown state, let other handlers process
+        return False
 
-    raise StopPropagation
+    return True
 
 
 # Keep legacy commands working alongside the panel
