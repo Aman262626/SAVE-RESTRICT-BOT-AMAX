@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: anon-save-bot
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: DB_URI
+        sync: false
+      - key: ADMINS
+        value: "5451167865"
+      - key: LOG_CHANNEL
+        value: "-1003626735596"
