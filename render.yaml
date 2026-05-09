@@ -1,8 +1,10 @@
 services:
   - type: web
     name: anon-save-bot
-    runtime: docker
+    runtime: python
     plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
     healthCheckPath: /
     envVars:
       - key: BOT_TOKEN
@@ -17,3 +19,5 @@ services:
         value: "5451167865"
       - key: LOG_CHANNEL
         value: "-1003626735596"
+      - key: PYTHON_VERSION
+        value: "3.12.9"
