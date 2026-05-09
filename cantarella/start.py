@@ -15,6 +15,7 @@ from pyrogram.errors import (
 )
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, CallbackQuery, InputMediaPhoto
 from config import API_ID, API_HASH, ERROR_MESSAGE, OWNER_USERNAME, ADMINS
+from cantarella.admin import ADMIN_STATE
 from database.db import db
 import math
 from logger import LOGGER
@@ -309,6 +310,8 @@ async def settings_panel(client, callback_query):
     )
 @Client.on_message(filters.text & filters.private & ~filters.regex("^/"))
 async def save(client: Client, message: Message):
+    if message.from_user and message.from_user.id in ADMIN_STATE:
+        return
     if "https://t.me/" in message.text:
        
         is_limit_reached = await db.check_limit(message.from_user.id)
@@ -484,6 +487,8 @@ async def handle_restricted_content(client: Client, acc, message: Message, chat_
 @Client.on_callback_query()
 async def button_callbacks(client: Client, callback_query: CallbackQuery):
     data = callback_query.data
+    if data and data.startswith("adm_"):
+        return
     message = callback_query.message
     if not message: return
    # --- DEVELOPER INFO ---
