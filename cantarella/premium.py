@@ -6,7 +6,7 @@ from pyrogram.types import (
     InlineKeyboardButton
 )
 from database.db import db
-from config import ADMINS
+from config import ADMINS, OWNER_USERNAME
 from datetime import date, datetime, timedelta
 from logger import LOGGER
 
@@ -75,10 +75,12 @@ async def my_plan(client: Client, message: Message):
             "<i>Upgrade to Premium for unlimited access! 🚀</i>"
         )
 
-    buttons = InlineKeyboardMarkup([
-        [InlineKeyboardButton("💎 View Premium Plans", callback_data="premium_plans_btn")],
-        [InlineKeyboardButton("📞 Contact Admin", url="https://t.me/about_zani")]
-    ])
+    admin_url = f"https://t.me/{OWNER_USERNAME}" if OWNER_USERNAME else None
+    contact_row = [InlineKeyboardButton("📞 Contact Admin", url=admin_url)] if admin_url else []
+    rows = [[InlineKeyboardButton("💎 View Premium Plans", callback_data="premium_plans_btn")]]
+    if contact_row:
+        rows.append(contact_row)
+    buttons = InlineKeyboardMarkup(rows)
 
     await message.reply_text(
         plan_text,
@@ -112,10 +114,12 @@ async def show_premium_plans(message_or_query):
         "<i>Tap the button below to buy instantly.</i>"
     )
 
-    buttons = InlineKeyboardMarkup([
-        [InlineKeyboardButton("💳 Buy Premium Now", url="https://t.me/DmOwner")],
-        [InlineKeyboardButton("⬅️ Back to My Plan", callback_data="myplan_back_btn")]
-    ])
+    admin_url = f"https://t.me/{OWNER_USERNAME}" if OWNER_USERNAME else None
+    rows = []
+    if admin_url:
+        rows.append([InlineKeyboardButton("💳 Buy Premium Now", url=admin_url)])
+    rows.append([InlineKeyboardButton("⬅️ Back to My Plan", callback_data="myplan_back_btn")])
+    buttons = InlineKeyboardMarkup(rows)
 
     if isinstance(message_or_query, Message):
         await message_or_query.reply_text(

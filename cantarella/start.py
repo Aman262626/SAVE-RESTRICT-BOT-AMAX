@@ -7,14 +7,14 @@ import time
 import shutil
 import pyrogram
 import requests
-import hashlib 
+
 from pyrogram import Client, filters, enums
 from pyrogram.errors import (
     FloodWait, UserIsBlocked, InputUserDeactivated, UserAlreadyParticipant,
     InviteHashExpired, UsernameNotOccupied, AuthKeyUnregistered, UserDeactivated, UserDeactivatedBan
 )
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, CallbackQuery, InputMediaPhoto
-from config import API_ID, API_HASH, ERROR_MESSAGE
+from config import API_ID, API_HASH, ERROR_MESSAGE, OWNER_USERNAME, ADMINS
 from database.db import db
 import math
 from logger import LOGGER
@@ -36,16 +36,8 @@ REACTIONS = [
 ]
 
 
-dev_text = "👨‍💻 Mind Behind This Bot:\n• @DmOwner\n• @akaza7902"
-expected_dev_hash = "b9e63b7578bdec13f3cb3162fe5f5e93dccaba3bfd5c8ddacbb90ffdcdcce402"
-channels_text = "📢 Official Channels:\n• @ReX_update\n• @THEUPDATEDGUYS\n\nStay updated for new features!"
-expected_channels_hash = "e19212e571bd0f6626450dd790029d392c0748c554d4b386a0c0752f4148d37d"
-
-if (
-    hashlib.sha256(dev_text.encode('utf-8')).hexdigest() != expected_dev_hash or
-    hashlib.sha256(channels_text.encode('utf-8')).hexdigest() != expected_channels_hash
-):
-    raise Exception("Tampered developer info detected! Bot will not start. Fuck the code - crashing now.")
+dev_text = "👨‍💻 Developed By:\n• @cantarellabots"
+channels_text = "📢 Official Channel:\n• @cantarellabots"
 
 class script(object):
    
@@ -276,9 +268,10 @@ async def send_help(client: Client, message: Message):
 @Client.on_message(filters.command(["plan", "myplan", "premium"]))
 async def send_plan(client: Client, message: Message):
     buttons = [
-        [InlineKeyboardButton("📸 Send Payment Proof", url="https://t.me/DmOwner")],
+        [InlineKeyboardButton("📸 Send Payment Proof", url=f"https://t.me/{OWNER_USERNAME}")] if OWNER_USERNAME else [],
         [InlineKeyboardButton("❌ Close Menu", callback_data="close_btn")]
     ]
+    buttons = [row for row in buttons if row]
     await client.send_photo(
         chat_id=message.chat.id,
         photo=SUBSCRIPTION,
@@ -507,18 +500,18 @@ async def button_callbacks(client: Client, callback_query: CallbackQuery):
     elif data == "settings_btn":
         await settings_panel(client, callback_query)
     elif data == "buy_premium":
-        buttons = [
-            [InlineKeyboardButton("📸 Send Payment Proof", url="https://t.me/DmOwner")],
-            [InlineKeyboardButton("⬅️ Back to Home", callback_data="start_btn")]
-        ]
+        rows = []
+        if OWNER_USERNAME:
+            rows.append([InlineKeyboardButton("📸 Send Payment Proof", url=f"https://t.me/{OWNER_USERNAME}")])
+        rows.append([InlineKeyboardButton("⬅️ Back to Home", callback_data="start_btn")])
         await client.edit_message_media(
             chat_id=message.chat.id,
             message_id=message.id,
             media=InputMediaPhoto(
                 media=SUBSCRIPTION,
-                caption=script.PREMIUM_TEXT.format(callback_query.from_user.mention, UPI_ID, QR_CODE)
+                caption=script.PREMIUM_TEXT.format(UPI_ID, QR_CODE)
             ),
-            reply_markup=InlineKeyboardMarkup(buttons)
+            reply_markup=InlineKeyboardMarkup(rows)
         )
     elif data == "help_btn":
         buttons = [[InlineKeyboardButton("⬅️ Back to Home", callback_data="start_btn")]]
