@@ -1,5 +1,4 @@
-# Developed by: LastPerson07 × cantarella
-# Telegram: @cantarellabots | @THEUPDATEDGUYS
+# Bot Owner: @Anonononononon
 import os
 import asyncio
 import random
@@ -7,7 +6,6 @@ import time
 import shutil
 import pyrogram
 import requests
-import hashlib 
 from pyrogram import Client, filters, enums
 from pyrogram.errors import (
     FloodWait, UserIsBlocked, InputUserDeactivated, UserAlreadyParticipant,
@@ -36,16 +34,6 @@ REACTIONS = [
 ]
 
 
-dev_text = "👨‍💻 Mind Behind This Bot:\n• @DmOwner\n• @akaza7902"
-expected_dev_hash = "b9e63b7578bdec13f3cb3162fe5f5e93dccaba3bfd5c8ddacbb90ffdcdcce402"
-channels_text = "📢 Official Channels:\n• @ReX_update\n• @THEUPDATEDGUYS\n\nStay updated for new features!"
-expected_channels_hash = "e19212e571bd0f6626450dd790029d392c0748c554d4b386a0c0752f4148d37d"
-
-if (
-    hashlib.sha256(dev_text.encode('utf-8')).hexdigest() != expected_dev_hash or
-    hashlib.sha256(channels_text.encode('utf-8')).hexdigest() != expected_channels_hash
-):
-    raise Exception("Tampered developer info detected! Bot will not start. Fuck the code - crashing now.")
 
 class script(object):
    
@@ -79,8 +67,8 @@ class script(object):
 """
     ABOUT_TXT = """<b>ℹ️ About This Bot</b>
 <blockquote><b>╭────[ 🧩 Technical Stack ]────⍟</b>
-<b>├⍟ 🤖 Bot Name : <a href=http://t.me/THEUPDATEDGUYS_Bot>Save Content</a></b>
-<b>├⍟ 👨‍💻 Developer : <a href=https://t.me/DmOwner>Ⓜ️ark X cantarella</a></b>
+<b>├⍟ 🤖 Bot Name : Save Restricted Content Bot</b>
+<b>├⍟ 👨‍💻 Owner : <a href=https://t.me/Anonononononon>@Anonononononon</a></b>
 <b>├⍟ 📚 Library : <a href='https://docs.pyrogram.org/'>Pyrogram Async</a></b>
 <b>├⍟ 🐍 Language : <a href='https://www.python.org/'>Python 3.11+</a></b>
 <b>├⍟ 🗄 Database : <a href='https://www.mongodb.com/'>MongoDB Atlas Cluster</a></b>
@@ -115,7 +103,7 @@ class script(object):
 <b>⏳ ETA:</b> <code>{eta}</code>
 </blockquote>
 """
-    CAPTION = """<b><a href="https://t.me/THEUPDATEDGUYS"></a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/THEUPDATEDGUYS">THE UPDATED GUYS 😎</a></b>"""
+    CAPTION = """<b>⚜️ Saved via @Anonononononon Bot</b>"""
     LIMIT_REACHED = """<b>🚫 Daily Limit Exceeded</b>
 <b>Your 10 free saves for today have been used.</b>
 <i>Quota resets automatically after 24 hours from first download.</i>
@@ -248,10 +236,6 @@ async def send_start(client: Client, message: Message):
         [
             InlineKeyboardButton("⚙️ Settings Panel", callback_data="settings_btn"),
             InlineKeyboardButton("ℹ️ About Bot", callback_data="about_btn")
-        ],
-        [
-            InlineKeyboardButton('📢 Channels', callback_data="channels_info"),
-            InlineKeyboardButton('👨‍💻 Developers', callback_data="dev_info")
         ]
     ]
     reply_markup = InlineKeyboardMarkup(buttons)
@@ -276,7 +260,7 @@ async def send_help(client: Client, message: Message):
 @Client.on_message(filters.command(["plan", "myplan", "premium"]))
 async def send_plan(client: Client, message: Message):
     buttons = [
-        [InlineKeyboardButton("📸 Send Payment Proof", url="https://t.me/DmOwner")],
+        [InlineKeyboardButton("📸 Send Payment Proof", url="https://t.me/Anonononononon")],
         [InlineKeyboardButton("❌ Close Menu", callback_data="close_btn")]
     ]
     await client.send_photo(
@@ -493,22 +477,11 @@ async def button_callbacks(client: Client, callback_query: CallbackQuery):
     data = callback_query.data
     message = callback_query.message
     if not message: return
-   # --- DEVELOPER INFO ---
-    if data == "dev_info":
-        await callback_query.answer(
-            text=dev_text,
-            show_alert=True
-        )
-    elif data == "channels_info":
-        await callback_query.answer(
-            text=channels_text,
-            show_alert=True
-        )
-    elif data == "settings_btn":
+    if data == "settings_btn":
         await settings_panel(client, callback_query)
     elif data == "buy_premium":
         buttons = [
-            [InlineKeyboardButton("📸 Send Payment Proof", url="https://t.me/DmOwner")],
+            [InlineKeyboardButton("📸 Send Payment Proof", url="https://t.me/Anonononononon")],
             [InlineKeyboardButton("⬅️ Back to Home", callback_data="start_btn")]
         ]
         await client.edit_message_media(
@@ -516,7 +489,7 @@ async def button_callbacks(client: Client, callback_query: CallbackQuery):
             message_id=message.id,
             media=InputMediaPhoto(
                 media=SUBSCRIPTION,
-                caption=script.PREMIUM_TEXT.format(callback_query.from_user.mention, UPI_ID, QR_CODE)
+                caption=script.PREMIUM_TEXT.format(UPI_ID, QR_CODE)
             ),
             reply_markup=InlineKeyboardMarkup(buttons)
         )
@@ -558,10 +531,6 @@ async def button_callbacks(client: Client, callback_query: CallbackQuery):
             [
                 InlineKeyboardButton("⚙️ Settings Panel", callback_data="settings_btn"),
                 InlineKeyboardButton("ℹ️ About Bot", callback_data="about_btn")
-            ],
-            [
-                InlineKeyboardButton('📢 Channels', callback_data="channels_info"),
-                InlineKeyboardButton('👨‍💻 Developers', callback_data="dev_info")
             ]
         ]
         await client.edit_message_media(

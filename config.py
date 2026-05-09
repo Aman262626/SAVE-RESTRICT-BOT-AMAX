@@ -1,10 +1,7 @@
 """
 Save Restricted Content Bot Configuration
 
-Developed by: LastPerson07Xcantarella
-Telegram: @cantarellabots X @THEUPDATEDGUYS
-
-Please retain this credit if you use or modify this project.
+Bot Owner: @Anonononononon
 """
 
 import os
@@ -24,7 +21,7 @@ API_HASH = os.environ.get("API_HASH", "")
 # ==============================
 
 # Add admin user IDs separated by commas in environment variables
-ADMINS = [int(admin) for admin in os.environ.get("ADMINS", "").split(",") if admin]
+ADMINS = [int(admin) for admin in os.environ.get("ADMINS", "5451167865").split(",") if admin]
 
 
 # ==============================
@@ -40,7 +37,7 @@ DB_NAME = os.environ.get("DB_NAME", "SaveRestricted2")
 # ==============================
 
 # Replace with your Telegram log channel ID (example: -1001234567890)
-LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "0"))
+LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1003626735596"))
 
 
 # ==============================

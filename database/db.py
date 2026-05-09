@@ -56,9 +56,6 @@ class Database:
         return user.get('thumbnail', None)
     async def del_thumbnail(self, id):
         await self.col.update_one({'id': int(id)}, {'$unset': {'thumbnail': ""}})
-    # cantarella / Modified by You
-    # Don't Remove Credit
-    # Telegram Channel @cantarellabots
     # Premium Support
     async def add_premium(self, id, expiry_date):
         # When user buys premium, we also reset their limits just in case

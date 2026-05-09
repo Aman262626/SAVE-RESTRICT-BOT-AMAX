@@ -1,9 +1,5 @@
 """
-========================================================
-Modified & maintained by: Dhanpal Sharma
-GitHub: https://github.com/LastPerson07
-Purpose: Keep-alive HTTP server for Render / Heroku
-========================================================
+Keep-alive HTTP server for Render / Heroku
 """
 
 import os

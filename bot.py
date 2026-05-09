@@ -23,22 +23,23 @@ IST = timezone(timedelta(hours=5, minutes=30))
 USER_CACHE = set()
 
 LOGO = r"""
-  ██████╗  ██╗  ██╗  █████╗  ███╗   ██╗ ██████╗   █████╗  ██╗      
-  ██╔══██╗ ██║  ██║ ██╔══██╗ ████╗  ██║ ██╔══██╗ ██╔══██╗ ██║      
-  ██║  ██║ ███████║ ███████║ ██╔██╗ ██║ ██████╔╝ ███████║ ██║      
-  ██║  ██║ ██╔══██║ ██╔══██║ ██║╚██╗██║ ██╔═══╝  ██╔══██║ ██║      
-  ██████╔╝ ██║  ██║ ██║  ██║ ██║ ╚████║ ██║      ██║  ██║ ███████
+   █████╗  ███╗   ██╗  ██████╗  ███╗   ██╗
+  ██╔══██╗ ████╗  ██║ ██╔═══██╗ ████╗  ██║
+  ███████║ ██╔██╗ ██║ ██║   ██║ ██╔██╗ ██║
+  ██╔══██║ ██║╚██╗██║ ██║   ██║ ██║╚██╗██║
+  ██║  ██║ ██║ ╚████║ ╚██████╔╝ ██║ ╚████║
+  ╚═╝  ╚═╝ ╚═╝  ╚═══╝  ╚═════╝  ╚═╝  ╚═══╝
     𝙱𝙾𝚃 𝚆𝙾𝚁𝙺𝙸𝙽𝙶 𝙿𝚁𝙾𝙿𝙴𝚁𝙻𝚈....
 """
 
 class Bot(Client):
     def __init__(self):
         super().__init__(
-            name="cantarella_Login_Bot",
+            name="Anon_Save_Bot",
             api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
-            plugins=dict(root="cantarella"),
+            plugins=dict(root="cantarella"),  # plugin directory name
             workers=10, 
             sleep_threshold=15,
             max_concurrent_transmissions=5,
@@ -91,9 +92,9 @@ class Bot(Client):
         startup_text = (
             f"<b><i>🤖 Bot Successfully Started ♻️</i></b>\n\n"
             f"<b>Bot:</b> @{me.username}\n"
-            f"<b>Users:</b> <code>{user_count} / 200</code>\n"
+            f"<b>Users:</b> <code>{user_count}</code>\n"
             f"<b>Time:</b> <code>{now.strftime('%I:%M %p')} IST</code>\n\n"
-            f"<b>Developed by @cantarellabots</b>"
+            f"<b>Owner: @Anonononononon</b>"
         )
 
         try:
