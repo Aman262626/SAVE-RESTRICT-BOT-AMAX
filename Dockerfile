@@ -1,12 +1,5 @@
-# ========================================================
-# cantarella
-# Don't Remove Credit 🥺
-# Telegram Channel @cantarellabots
-#
-# Maintained & Updated by:
-# Dhanpal Sharma
-# GitHub: https://github.com/LastPerson07
-# ========================================================
+# Save Restricted Content Bot
+# Owner: @Anonononononon
 
 FROM python:3.10.13-slim-bullseye
 
@@ -33,12 +26,3 @@ COPY . .
 # Start ONLY the bot
 # Flask keep_alive server handles port binding
 CMD ["python3", "bot.py"]
-
-# ========================================================
-# cantarella
-# Don't Remove Credit
-# Telegram Channel @cantarellabots
-#
-# Updated & Managed by:
-# Dhanpal Sharma | https://github.com/LastPerson07
-# ========================================================

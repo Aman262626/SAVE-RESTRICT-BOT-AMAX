@@ -1,4 +1,4 @@
-# 🚀 Save Restricted Content Bot (Advanced)
+# Save Restricted Content Bot
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10+-blue?logo=python&style=for-the-badge">
@@ -8,24 +8,7 @@
 </p>
 
 <p align="center">
-<b>A cleaner and improved version of the Save Restricted Content Bot with a better structure, smoother workflow, and practical features for real usage.</b>
-</p>
-
-<p align="center">
-  <a href="https://github.com/abhinai2244/SAVE-RESTRICT-BOT">
-    <img src="https://img.shields.io/badge/View-Original%20Repository-black?style=for-the-badge&logo=github">
-  </a>
-</p>
-
----
-
-## 🔗 Quick Links
-
-<p align="center">
-  <a href="#-features"><img src="https://img.shields.io/badge/Features-View-blue?style=for-the-badge"></a>
-  <a href="#-deployment"><img src="https://img.shields.io/badge/Deployment-Setup-green?style=for-the-badge"></a>
-  <a href="#-commands"><img src="https://img.shields.io/badge/Commands-List-orange?style=for-the-badge"></a>
-  <a href="#-support"><img src="https://img.shields.io/badge/Support-Telegram-blue?style=for-the-badge&logo=telegram"></a>
+<b>Save Restricted Content Bot - owned and operated by @Anonononononon</b>
 </p>
 
 ---
@@ -108,8 +91,8 @@
 ### Clone the repository
 
 ```bash
-git clone https://github.com/abhinai2244/SAVE-RESTRICT-BOT.git
-cd SAVE-RESTRICT-BOT
+git clone https://github.com/Aman262626/SAVE-RESTRICT-BOT-AMAX.git
+cd SAVE-RESTRICT-BOT-AMAX
 ```
 
 ### Install dependencies
@@ -191,34 +174,10 @@ docker run -d --env-file .env save-restricted-bot
 
 ---
 
-# 🤝 Contributors
-
-<p align="center">
-  <a href="https://t.me/about_zani">
-    <img src="https://img.shields.io/badge/Abhi-Telegram-blue?style=for-the-badge&logo=telegram">
-  </a>
-  &nbsp;
-  <a href="https://github.com/LastPerson07/">
-    <img src="https://img.shields.io/badge/LastPerson07-GitHub-black?style=for-the-badge&logo=github">
-  </a>
-</p>
-
----
-
 # 📞 Support
 
 <p align="center">
-  <a href="https://t.me/cantarellabots">
-    <img src="https://img.shields.io/badge/cantarella-Official%20Channel-blue?style=for-the-badge&logo=telegram">
+  <a href="https://t.me/Anonononononon">
+    <img src="https://img.shields.io/badge/Owner-@Anonononononon-blue?style=for-the-badge&logo=telegram">
   </a>
-  <br><br>
-  <a href="https://t.me/THEUPDATEDGUYS">
-    <img src="https://img.shields.io/badge/Updates-Channel-blue?style=for-the-badge&logo=telegram">
-  </a>
-</p>
-
----
-
-<p align="center">
-⭐ If this project helped you, consider starring the repository!
 </p>
