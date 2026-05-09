@@ -95,6 +95,7 @@
 | `LOG_CHANNEL`   | Channel ID for logging users and errors    |
 | `ERROR_MESSAGE` | Send error messages to users               |
 | `KEEP_ALIVE`    | Use an uptime service like UptimeRobot     |
+| `OWNER_USERNAME` | Telegram username (without @) for admin links |
 
 </details>
 
@@ -179,6 +180,7 @@ docker run -d --env-file .env save-restricted-bot
 <details>
 <summary><b>Click to Expand</b></summary>
 
+- `/admin` — **Admin Control Panel** (interactive inline panel)
 - `/broadcast`
 - `/ban` / `/unban`
 - `/add_premium` / `/remove_premium`

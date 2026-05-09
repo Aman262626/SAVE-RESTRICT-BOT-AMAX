@@ -26,6 +26,9 @@ API_HASH = os.environ.get("API_HASH", "")
 # Add admin user IDs separated by commas in environment variables
 ADMINS = [int(admin) for admin in os.environ.get("ADMINS", "").split(",") if admin]
 
+# Owner Telegram username (without @) for "Contact Admin" buttons
+OWNER_USERNAME = os.environ.get("OWNER_USERNAME", "")
+
 
 # ==============================
 # Database Configuration
