@@ -15,7 +15,7 @@ from pyrogram.errors import (
 )
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, CallbackQuery, InputMediaPhoto
 from config import API_ID, API_HASH, ERROR_MESSAGE, OWNER_USERNAME, ADMINS
-from cantarella.admin import ADMIN_STATE
+from cantarella.admin import ADMIN_STATE, process_admin_state
 from database.db import db
 import math
 from logger import LOGGER
@@ -311,7 +311,12 @@ async def settings_panel(client, callback_query):
 @Client.on_message(filters.text & filters.private & ~filters.regex("^/"))
 async def save(client: Client, message: Message):
     if message.from_user and message.from_user.id in ADMIN_STATE:
-        return
+        try:
+            handled = await process_admin_state(client, message)
+            if handled:
+                return
+        except Exception as e:
+            logger.error(f"Admin state processing error: {e}")
     if "https://t.me/" in message.text:
        
         is_limit_reached = await db.check_limit(message.from_user.id)
